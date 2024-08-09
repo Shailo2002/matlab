@@ -1,0 +1,52 @@
+n = 10;
+
+xi = linspace(-1,1,10);
+yi = [3 2 2 1 0 -3 -4 1 2 4];
+
+plot(xi,yi,'o','MarkerSize',10,'MarkerFaceColor','r','MarkerEdgeColor','k')
+
+%===========================
+x = linspace(-1,1,1000);
+% y = ?
+% Interpolate to find value of y at x using following 
+% interpolation techniques
+
+hold on
+y = zeros(size(x));
+% 1. midpoint interpolation
+% Initialize y for the interpolated values
+y = zeros(size(x));
+
+% Calculate the midpoints and assign y-values based on the conditions
+for i = 1:N-1
+    % Calculate the midpoint between xi(i) and xi(i+1)
+    xmid = (xi(i) + xi(i+1)) / 2;
+    
+    % For each x in the fine grid, determine the corresponding y-value
+    for j = 1:length(x)
+        if x(j) > xi(i) && x(j) <= xmid
+            y(j) = yi(i);
+        elseif x(j) > xmid && x(j) <= xi(i+1)
+            y(j) = yi(i+1);
+        end
+    end
+end
+
+% Plot the interpolated y-values
+plot(x, y, 'b', 'LineWidth', 1.5);
+
+% Add labels and title
+xlabel('x');
+ylabel('y');
+title('Midpoint-based Interpolation');
+
+% Add legend
+legend('Original Points', 'Midpoint-based Interpolation');
+
+hold off
+
+
+
+% 2. linear interpolation
+
+% 3. polynomial interpolation
